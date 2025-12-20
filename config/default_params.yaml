@@ -1,0 +1,65 @@
+# Default Radiomics Extraction Parameters
+# =========================================
+# This configuration file contains the default settings for PyRadiomics feature extraction.
+# Modify these settings to customize the extraction process.
+
+# Image preprocessing settings
+preprocessing:
+  normalize: true
+  normalize_scale: 100
+  resample_pixel_spacing: null  # Set to [1.0, 1.0, 1.0] to resample
+  interpolator: sitkBSpline
+
+# Feature classes to extract
+feature_classes:
+  firstorder: true    # First order statistics (mean, median, variance, etc.)
+  shape: true         # Shape features (volume, surface area, sphericity, etc.)
+  glcm: true          # Gray Level Co-occurrence Matrix
+  glrlm: true         # Gray Level Run Length Matrix
+  glszm: true         # Gray Level Size Zone Matrix
+  gldm: true          # Gray Level Dependence Matrix
+  ngtdm: true         # Neighbouring Gray Tone Difference Matrix
+
+# GLCM specific settings
+glcm:
+  distances: [1]      # Distances for GLCM calculation
+
+# Binning settings
+binning:
+  bin_width: 25       # Width of bins for discretization
+  bin_count: null     # Alternative: fixed number of bins
+
+# Image filters
+filters:
+  wavelet: false      # Enable wavelet decomposition
+  log: false          # Enable Laplacian of Gaussian
+  log_sigma: [1.0, 2.0, 3.0]  # Sigma values for LoG
+
+# 2D vs 3D extraction
+dimensionality:
+  force_2d: false
+  force_2d_dimension: 0
+
+# Label settings
+label: 1              # Label value to use in mask
+
+# CT Window Presets (for reference)
+ct_windows:
+  lung:
+    center: -600
+    width: 1500
+  mediastinum:
+    center: 40
+    width: 400
+  bone:
+    center: 400
+    width: 2000
+  brain:
+    center: 40
+    width: 80
+  liver:
+    center: 60
+    width: 150
+  soft_tissue:
+    center: 50
+    width: 350
